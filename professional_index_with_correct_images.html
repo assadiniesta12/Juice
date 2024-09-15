@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Healthy Juice Recipes - Flexbox & Grid</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <h1>Healthy Juice Recipes Blog</h1>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Search Bar -->
+        <div class="search-bar">
+            <input type="text" id="searchBar" onkeyup="searchRecipes()" placeholder="Search for recipes...">
+        </div>
+
+        <section>
+            <header>
+                <h2>Our Top Professional Juice Recipes</h2>
+            </header>
+            <div class="recipe-grid" id="recipeGrid">
+                <div class="recipe">
+                    <h3>Green Detox Juice</h3>
+                    <img src="https://images.unsplash.com/photo-1617635141667-18a4a62081c2" alt="Green Detox Juice">
+                    <p>Ingredients: Kale, Spinach, Cucumber, Green Apples, Lemon, Ginger.</p>
+                    <span class="show-more" onclick="toggleDetails(this)">Show more</span>
+                </div>
+
+                <div class="recipe">
+                    <h3>Berry Blast Juice</h3>
+                    <img src="https://unsplash.com/photos/clear-glass-pitcher-beside-clear-rocks-glass-gaqfzS7YLrc?utm_content=creditShareLink&utm_medium=referral&utm_source=unsplash"
+                        alt="Berry Blast Juice">
+                    <p>Ingredients: Blueberries, Raspberries, Strawberries, Honey, Mint.</p>
+                    <span class="show-more" onclick="toggleDetails(this)">Show more</span>
+                </div>
+
+                <div class="recipe">
+                    <h3>Carrot-Orange Booster</h3>
+                    <img src="https://unsplash.com/photos/clear-glass-pitcher-beside-clear-rocks-glass-gaqfzS7YLrc"
+                        alt="Carrot Orange Juice">
+                    <p>Ingredients: Carrots, Oranges, Turmeric, Lemon.</p>
+                    <span class="show-more" onclick="toggleDetails(this)">Show more</span>
+                </div>
+
+                <div class="recipe">
+                    <h3>Tropical Paradise Juice</h3>
+                    <img src="https://images.unsplash.com/photo-1552321554-74cd8d2db87c" alt="Tropical Paradise Juice">
+                    <p>Ingredients: Pineapple, Mango, Coconut Water, Lime.</p>
+                    <span class="show-more" onclick="toggleDetails(this)">Show more</span>
+                </div>
+
+                <div class="recipe">
+                    <h3>Beetroot Energy Juice</h3>
+                    <img src="https://images.unsplash.com/photo-1584551180630-c22d2f72ab5d" alt="Beetroot Energy Juice">
+                    <p>Ingredients: Beetroot, Green Apples, Ginger, Lemon.</p>
+                    <span class="show-more" onclick="toggleDetails(this)">Show more</span>
+                </div>
+
+                <div class="recipe">
+                    <h3>Citrus Zest Juice</h3>
+                    <img src="https://images.unsplash.com/photo-1598188308712-73d615e7d45f" alt="Citrus Zest Juice">
+                    <p>Ingredients: Oranges, Grapefruit, Lemon, Honey.</p>
+                    <span class="show-more" onclick="toggleDetails(this)">Show more</span>
+                </div>
+
+                <div class="recipe">
+                    <h3>Minty Cucumber Cooler</h3>
+                    <img src="https://images.unsplash.com/photo-1576671087761-56c517d029d2" alt="Minty Cucumber Cooler">
+                    <p>Ingredients: Cucumber, Mint Leaves, Lemon, Sparkling Water.</p>
+                    <span class="show-more" onclick="toggleDetails(this)">Show more</span>
+                </div>
+
+                <div class="recipe">
+                    <h3>Ginger Apple Spice Juice</h3>
+                    <img src="https://images.unsplash.com/photo-1609878354058-2151b70f2a1f"
+                        alt="Ginger Apple Spice Juice">
+                    <p>Ingredients: Apples, Ginger, Cinnamon, Lemon.</p>
+                    <span class="show-more" onclick="toggleDetails(this)">Show more</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="about">
+            <header>
+                <h2>About Us</h2>
+            </header>
+            <p>We are passionate about creating healthy juice recipes to promote wellness and vitality. Our blog curates
+                a variety of delicious juices, perfect for every occasion. Dive into our vibrant collection and find
+                your perfect blend!</p>
+        </section>
+
+        <section id="contact">
+            <header>
+                <h2>Contact Us</h2>
+            </header>
+            <p>Have any questions or suggestions? We would love to hear from you! Reach us at <a
+                    href="mailto:contact@healthyjuiceblog.com">contact@healthyjuiceblog.com</a>.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2024 Healthy Juice Recipes Blog - All Rights Reserved</p>
+    </footer>
+
+    <script>
+        function toggleDetails(element) {
+            var recipe = element.previousElementSibling;
+            if (recipe.style.display === "none") {
+                recipe.style.display = "block";
+                element.textContent = "Show less";
+            } else {
+                recipe.style.display = "none";
+                element.textContent = "Show more";
+            }
+        }
+
+        function searchRecipes() {
+            var input, filter, grid, recipes, h3, i, txtValue;
+            input = document.getElementById("searchBar");
+            filter = input.value.toUpperCase();
+            grid = document.getElementById("recipeGrid");
+            recipes = grid.getElementsByClassName("recipe");
+
+            for (i = 0; i < recipes.length; i++) {
+                h3 = recipes[i].getElementsByTagName("h3")[0];
+                txtValue = h3.textContent || h3.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    recipes[i].style.display = "";
+                } else {
+                    recipes[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
